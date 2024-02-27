@@ -5,7 +5,7 @@ resource "aws_db_instance" "postgresql" {
   allocated_storage     = 20
   engine                = "postgres"
   engine_version        = var.engine_version
-  name                  =  format("%s-%s-%s-postgres-db", var.common_tags["Asset_ID"], var.common_tags["Environment"], var.common_tags["Project"])    #"${var.db_name}"
+  name                  =  format("%s", var.common_tags) #"${var.db_name}"
   parameter_group_name  =  var.parameter_group_name
   #initial_database_name = "postgres"
   username              = "postgres"
