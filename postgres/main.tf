@@ -1,18 +1,18 @@
 
 resource "aws_db_instance" "postgresql" {
-  identifier            = "database-1"
-  instance_class        = var.instance_class
-  allocated_storage     = 20
-  engine                = "postgres"
-  engine_version        = var.engine_version
-  name                  =  format("%s", var.common_tags["Project"]) #"${var.db_name}"
+  identifier            = lookup(var.postgres, "identifier")
+  instance_class        = lookup(var.postgres, "instance_class")
+  allocated_storage     = lookup(var.postgres, "allocated_storage")
+  engine                = lookup(var.postgres, "engine")
+  engine_version        = lookup(var.postgres, "engine_version") #var.engine_version
+  name                  = format("%s", var.common_tags["Project"]) #"${var.db_name}"
   parameter_group_name  =  var.parameter_group_name
   #initial_database_name = "postgres"
   username              = "postgres"
   password              = "postgres"
   skip_final_snapshot      = true
   #parameter_group_name  = "default.postgres13"
-  storage_type          = "gp2"
+  storage_type          = lookup(var.postgres, "storage_type")
 
   tags= merge(var.common_tags, {
     Name = format("%s-%s-%s-artifactory-db", var.common_tags["Asset_ID"], var.common_tags["Environment"], var.common_tags["Project"])

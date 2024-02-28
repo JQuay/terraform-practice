@@ -38,3 +38,22 @@ variable "common_tags" {
       }
   
 }
+
+
+
+
+variable "postgres" {
+  type = map(any)
+  default = {
+     instance_class = "db.t3.micro"
+     db_name = "postgres"
+     parameter_group_name = "default.postgres13"
+     engine_version = "13.8"
+     storage_type          = "gp2"
+     engine                = "postgres"
+     allocated_storage     = 20
+     identifier            = "database-1"
+     instance_class        = "db.t3.micro"
+  }
+  
+}
