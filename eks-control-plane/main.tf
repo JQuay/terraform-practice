@@ -39,6 +39,6 @@ resource "aws_iam_role" "eks_cluster_role" {
   })
 }
 
-output "kubeconfig" {
-  value = data.aws_eks_cluster_auth.example.kubeconfig
-}
+# output "kubeconfig" {
+#   value = data.aws_eks_cluster_auth.example.kubeconfig
+# }
