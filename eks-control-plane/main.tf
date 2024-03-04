@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1" # Change to your desired region
+  region = "us-west-2" # Change to your desired region
 }
 
 resource "aws_eks_cluster" "example" {
@@ -16,18 +16,12 @@ resource "aws_eks_cluster" "example" {
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
-    subnet_ids = ["subnet-0a7a46a11793529da", "subnet-0712006e66056ca60"] # Replace with your subnet IDs
+    subnet_ids = ["subnet-12345678", "subnet-87654321"] # Replace with your subnet IDs
   }
-   
+
   tags = {
     Environment = "Production"
   }
-}
-
-resource "aws_eks_cluster_auth" "example" {
-  name = aws_eks_cluster.example.name
-
-  depends_on = [aws_eks_cluster.example]
 }
 
 resource "aws_iam_role" "eks_cluster_role" {
@@ -46,5 +40,5 @@ resource "aws_iam_role" "eks_cluster_role" {
 }
 
 output "kubeconfig" {
-  value = aws_eks_cluster.example.kubeconfig
+  value = data.aws_eks_cluster_auth.example.kubeconfig
 }
