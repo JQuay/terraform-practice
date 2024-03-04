@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2" # Change to your desired region
+  region = "us-east-1" # Change to your desired region
 }
 
 resource "aws_eks_cluster" "example" {
@@ -16,7 +16,7 @@ resource "aws_eks_cluster" "example" {
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
-    subnet_ids = ["subnet-12345678", "subnet-87654321"] # Replace with your subnet IDs
+    subnet_ids = ["subnet-0a7a46a11793529da", "subnet-0b8ba909e0d464411"] # Replace with your subnet IDs
   }
 
   tags = {
@@ -39,6 +39,3 @@ resource "aws_iam_role" "eks_cluster_role" {
   })
 }
 
-# output "kubeconfig" {
-#   value = data.aws_eks_cluster_auth.example.kubeconfig
-# }
