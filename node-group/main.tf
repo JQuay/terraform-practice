@@ -37,8 +37,8 @@ resource "aws_eks_node_group" "nodes_general" {
   node_group_name = format("%s-%s-%s-node-group", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
   node_role_arn   = aws_iam_role.nodes_general.arn
   subnet_ids = [
-    data.aws_subnet.private01.id,
-    data.aws_subnet.private02.id
+        "subnet-0b8ba909e0d464411",
+        "subnet-012cf50f87046bfe7"
   ]
 
   scaling_config {
