@@ -47,9 +47,9 @@ resource "aws_eks_node_group" "nodes_general" {
     max_size     = var.max_size
   }
 
-  remote_access {
-    ec2_ssh_key = var.ec2_ssh_key
-  }
+#   remote_access {
+#     ec2_ssh_key = var.ec2_ssh_key
+#   }
 
   ami_type             = var.ami_type
   capacity_type        = var.capacity_type
